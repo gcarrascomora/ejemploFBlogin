@@ -4,8 +4,16 @@
     android:id="@+id/activity_login"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ff0000"
+    android:background="@android:color/holo_orange_dark"
     tools:context="com.example.theodhor.facebookIntegration.LoginActivity">
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/ic_menu_camera"
+        android:layout_marginBottom="25dp"
+        android:layout_above="@+id/login_button"
+        android:layout_centerHorizontal="true" />
 
     <com.facebook.login.widget.LoginButton
         android:id="@+id/login_button"
@@ -17,18 +25,14 @@
         android:paddingBottom="12dp"
         android:layout_marginLeft="4dp"
         android:layout_marginRight="4dp"
-        android:layout_centerVertical="true"
-        android:layout_alignParentEnd="true"
         android:background="#FFFFFF"
-        android:textColor="@color/cardview_dark_background"/>
-
-    <ImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:src="@drawable/ic_menu_camera"
-        android:layout_marginBottom="25dp"
-        android:layout_above="@+id/login_button"
-        android:layout_centerHorizontal="true" />
+        android:textColor="@color/com_facebook_button_background_color_focused"
+        android:padding="15dp"
+        android:paddingEnd="15dp"
+        android:paddingLeft="10dp"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:paddingStart="10dp" />
 
 
 </RelativeLayout>
