@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private ShareDialog shareDialog;
     private Button logout;
+    String ejemplo ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
