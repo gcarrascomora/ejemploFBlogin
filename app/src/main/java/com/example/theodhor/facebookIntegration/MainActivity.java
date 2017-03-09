@@ -14,6 +14,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -46,8 +47,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         ActionBar ab = getSupportActionBar();
-        ab.setHomeAsUpIndicator(R.drawable.ic_menu_white_24dp);
-        ab.setDisplayHomeAsUpEnabled(true);
+        //ab.setHomeAsUpIndicator(R.drawable.ic_menu_white_24dp);
+        //ab.setDisplayHomeAsUpEnabled(true);
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         shareDialog = new ShareDialog(this);
@@ -55,9 +56,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                LoginManager.getInstance().logOut();
                 Intent login = new Intent(MainActivity.this, LoginActivity.class);
                 startActivity(login);
+                LoginManager.getInstance().logOut();
                 finish();
             }
         });
@@ -136,6 +137,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 .load(url)
                 .centerCrop()
                 .into(imagen);
+    }
+//MEnu Setting
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
     }
 }
 
