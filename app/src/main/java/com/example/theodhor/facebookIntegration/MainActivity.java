@@ -8,19 +8,22 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.MenuItem;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.example.theodhor.facebookIntegration.Presentacion;
 import com.facebook.FacebookSdk;
 import com.facebook.login.LoginManager;
 import com.facebook.share.model.ShareLinkContent;
@@ -38,6 +41,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private ShareDialog shareDialog;
     private Button logout;
+    private FragmentManager FM;
+    private FragmentTransaction FT;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,21 +52,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         ActionBar ab = getSupportActionBar();
+
         //ab.setHomeAsUpIndicator(R.drawable.ic_menu_white_24dp);
         //ab.setDisplayHomeAsUpEnabled(true);
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         shareDialog = new ShareDialog(this);
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent login = new Intent(MainActivity.this, LoginActivity.class);
-                startActivity(login);
-                LoginManager.getInstance().logOut();
-                finish();
-            }
-        });
+
         //information Facebook
         Bundle inBundle = getIntent().getExtras();
         String name = inBundle.get("name").toString();
@@ -69,20 +66,25 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         String imageUrl = inBundle.get("imageUrl").toString();
         //camputar imagen
         View headerView = navigationView.getHeaderView(0);
-        ImageView imagen = (ImageView) headerView.findViewById(R.id.imagenuser);
+        //ImageView imagen = (ImageView) headerView.findViewById(R.id.imagenuser);
         TextView drawerUsername = (TextView) headerView.findViewById(R.id.nombre);
-        drawerUsername.setText(name+surname);
+        drawerUsername.setText(name+" "+surname);
         //imprimir imagen
-        cargarimagenuser(imageUrl,imagen);
-        Toast.makeText(getApplicationContext(), imageUrl, Toast.LENGTH_LONG).show();
+/*        FM= getSupportFragmentManager();
+        FT= FM.beginTransaction();
+        FT.replace(R.id.frame_content, new Home()).commit();*/
+        //imprime la url de la imagen
+        // Toast.makeText(getApplicationContext(), imageUrl, Toast.LENGTH_LONG).show();
+        new MainActivity.DownloadImage((ImageView) findViewById(R.id.profileImage)).execute(imageUrl);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
+//carga la imagen cicular
+        //new MainActivity.DownloadImage((ImageView) findViewById(R.id.imagenuser)).execute(imageUrl);
 
-        //new MainActivity.DownloadImage((ImageView) findViewById(R.id.profileImage)).execute(imageUrl);
 
     }
     public class DownloadImage extends AsyncTask<String, Void, Bitmap> {
@@ -107,43 +109,48 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             bmImage.setImageBitmap(result);
         }
     }
+
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
-        int id = item.getItemId();
+        int id =item.getItemId();
+        //creating fragment object
+        if (id == R.id.medicamentos) {
 
-        if (id == R.id.nav_camera) {
+            FM= getSupportFragmentManager();
+            FT= FM.beginTransaction();
+            FT.replace(R.id.frame_content, new Presentacion()).commit();
             // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        } else if (id == R.id.home) {
 
-        } else if (id == R.id.nav_slideshow) {
+        }else if (id == R.id.home) {
 
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
+        } else if (id == R.id.salir) {
+            Intent login = new Intent(MainActivity.this, LoginActivity.class);
+            startActivity(login);
+            LoginManager.getInstance().logOut();
+            finish();
         }
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
 
-    public void cargarimagenuser(String url,ImageView imagen) {
-        Glide.with(this)
-                .load(url)
-                .centerCrop()
-                .into(imagen);
-    }
-//MEnu Setting
+    //MEnu Setting toolbar
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
-}
+
+
+    }
+
+
+
+
 

@@ -17,6 +17,8 @@ import com.facebook.Profile;
 import com.facebook.ProfileTracker;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
+import com.example.theodhor.facebookIntegration.volleyControl.appController;
+import com.example.theodhor.facebookIntegration.R;
 
 public class LoginActivity extends AppCompatActivity {
 
