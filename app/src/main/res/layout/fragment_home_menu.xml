@@ -1,0 +1,135 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.theodhor.facebookIntegration.Home_menu">
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_alignParentTop="true"
+    android:layout_alignParentStart="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_gravity="center"
+            android:src="@drawable/com_facebook_button_send_icon_white"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:orientation="horizontal"
+            android:background="#436ae6">
+            <ImageView
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:paddingLeft="3dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_content_paste"/>
+
+            <TextView
+                android:id="@+id/boton_postular"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:paddingLeft="70dp"
+                android:elevation="4dp"
+                android:text="Requisitos"
+                android:textSize="30sp"
+                android:textColor="@color/com_facebook_button_background_color_focused"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/boton_medicamentos"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:background="#f1073a"
+            android:clickable="true"
+            android:onClick="medicamentosclick"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_gravity="center"
+                android:paddingLeft="3dp"
+                android:src="@drawable/ic_local_hospital" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:elevation="4dp"
+                android:paddingLeft="70dp"
+                android:text="Listado de Medicamentos"
+                android:textColor="@color/com_facebook_button_background_color_focused"
+                android:textSize="30sp" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:orientation="horizontal"
+            android:background="#96922a">
+            <ImageView
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:paddingLeft="3dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_location_on"/>
+
+            <TextView
+                android:id="@+id/boton_ubicacion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:paddingLeft="70dp"
+                android:elevation="4dp"
+                android:text="¿Cómo Llegar?"
+                android:textSize="30sp"
+                android:textColor="@color/com_facebook_button_background_color_focused"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:orientation="horizontal"
+            android:background="#ef6a6a">
+            <ImageView
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:paddingLeft="3dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_local_phone"/>
+
+            <TextView
+                android:id="@+id/boton_llamar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:elevation="4dp"
+                android:paddingLeft="70dp"
+                android:text="Preguntas Frecuentes "
+                android:textColor="@color/com_facebook_button_background_color_focused"
+                android:textSize="30sp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+
+
+
+
+</ScrollView>
+
+
+</RelativeLayout>

@@ -3,10 +3,8 @@ package com.example.theodhor.facebookIntegration;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -66,16 +64,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         String imageUrl = inBundle.get("imageUrl").toString();
         //camputar imagen
         View headerView = navigationView.getHeaderView(0);
-        //ImageView imagen = (ImageView) headerView.findViewById(R.id.imagenuser);
-        TextView drawerUsername = (TextView) headerView.findViewById(R.id.nombre);
-        drawerUsername.setText(name+" "+surname);
+        //
+        TextView usuarioName = (TextView) headerView.findViewById(R.id.nombreA);
+        usuarioName.setText(name+" "+surname);
         //imprimir imagen
-/*        FM= getSupportFragmentManager();
+        FM= getSupportFragmentManager();
         FT= FM.beginTransaction();
-        FT.replace(R.id.frame_content, new Home()).commit();*/
+        FT.replace(R.id.frame_content, new Home_menu()).commit();
         //imprime la url de la imagen
         // Toast.makeText(getApplicationContext(), imageUrl, Toast.LENGTH_LONG).show();
-        new MainActivity.DownloadImage((ImageView) findViewById(R.id.profileImage)).execute(imageUrl);
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -83,7 +81,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 //carga la imagen cicular
-        //new MainActivity.DownloadImage((ImageView) findViewById(R.id.imagenuser)).execute(imageUrl);
+       //new MainActivity.DownloadImage((ImageView) findViewById(R.id.profileImage)).execute(imageUrl);
+
 
 
     }
@@ -123,6 +122,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             FT.replace(R.id.frame_content, new Presentacion()).commit();
             // Handle the camera action
         } else if (id == R.id.home) {
+            FM= getSupportFragmentManager();
+            FT= FM.beginTransaction();
+            FT.replace(R.id.frame_content, new Home_menu()).commit();
 
         }else if (id == R.id.home) {
 
